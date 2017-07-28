@@ -20,3 +20,15 @@ function listAllFolders() {
    Logger.log(folder.getName());  
  }
 }
+
+// Reports the number of files in a folder.
+function fileCount(foldername) {
+  var folders = DriveApp.getFoldersByName(foldername);
+  var folder = folders.next();
+  var foldersize = 0;
+  var contents = folder.getFiles();
+  while(contents.hasNext()) {
+    foldersize++;
+  }
+  Logger.log("Files in " + foldername + ": " + foldersize);
+}
