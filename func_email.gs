@@ -24,3 +24,12 @@ function messageDetails(thread, eachTag) {
     Logger.log("Tag: " + eachTag + "\n" + "From: " + message.getFrom() + "\n" + "Date: " + message.getDate() + "\n" + "Subject: " + message.getSubject() + "\n");}
   }
 }
+
+// allThreads() lists the thread ID of everything in the Inbox
+function allThreads() {
+  var threads = GmailApp.getInboxThreads();
+  for (var i = 0; i < threads.length; i++) {
+    var threadId = threads[i].getId();
+    Logger.log(threadId);
+	}
+}
