@@ -33,3 +33,27 @@ function allThreads() {
     Logger.log(threadId);
 	}
 }
+
+// allEmails() List data from every message in the Inbox
+function allEmails() {
+  var threads = GmailApp.getInboxThreads();
+  for (var i = 0; i < threads.length; i++) {
+    var threadId = threads[i].getId();
+    var threadCount = threads[i].getMessageCount();
+    var threadUrl = threads[i].getPermalink();
+    var threadLabels = "TBD";
+    for (var x = 0; x < threadCount; x++) {
+      var message = threads[i].getMessages()[x];
+      var msgDate = message.getDate();
+      var msgSubject = message.getSubject();
+      var msgFrom = message.getFrom();
+      var msgTo = message.getTo();
+      var msgCC = message.getCc();
+      var msgBCC = message.getBcc();
+      var msgId = message.getId();
+      var msgBody = message.getPlainBody();
+      reportEmails(msgId, threadId, threadUrl, msgTags, msgDate, msgSubject, msgFrom, msgTo, msgCC, msgBCC, msgBody);
+      Logger.log("Email: " + msgId +", " + threadUrl +", " + msgDate +", " + msgSubject +", " + msgFrom)};
+    }
+  }
+}
