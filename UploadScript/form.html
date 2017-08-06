@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ddd;
+        }
+        input.formfield {
+            height: 40px;
+            float: left;
+            margin: 10px;
+            padding: 5px;
+        }
+        .formfield input[type="text"] {
+            border: solid 1px #dcdcdc;
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        .formfield input[type="text"]:focus,
+        .formfield input[type="text"].focus {
+            border: solid 1px #707070;
+            box-shadow: 0 0 5px 1px #969696;
+        }
+
+    </style>     
+
+</head>
+<body>
+
+<div>
+    <div>
+        <form id="myForm">
+            <input type="text" name="myDescription" placeholder="Description" class="formfield">
+            <input type="text" name="myMore" placeholder="More" class="formfield"> -->
+            <input type="file" name="myFile" />
+            <input type="submit" value="Upload File" 
+                    onclick="this.value='Uploading..';
+                    google.script.run.withSuccessHandler(fileUploaded)
+                    .uploadFiles(this.parentNode);
+                    return false;">
+        </form>
+    </div>
+    <div id="output"></div>
+
+    <script>
+        function fileUploaded(status) {
+        document.getElementById('myForm').style.display = 'none';
+        document.getElementById('output').innerHTML = status;
+        }
+    </script>
+
+    <style>
+        input { display:block; margin: 20px; }
+    </style>
+</div>
+    
+</body>
+</html>
