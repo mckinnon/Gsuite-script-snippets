@@ -2,6 +2,7 @@
   Functions to open spreadsheets and return values from specified cells
 */
 
+// Declare variables.
 function run() {
   var spreadsheetId = "1SSwW_EGlm...a6yz_f";  // user-specified spreadsheet
   var tabNumber = 0;                          // user-specified tab
@@ -12,8 +13,15 @@ function run() {
   var cell = cellValue(activeRange,row,col);
 }
 
+// Add a custom menu to Google Sheet to run selected script.
+function onOpen() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var searchMenuEntries = [ {name: "Menu Item", functionName: "Function Name"}];
+  ss.addMenu("Menu Item", searchMenuEntries);
+}
+
 // The spreadsheet is opened on the server only, not on the client side.
-function openSheet() {
+function openSheet(spreadsheetId) {
   var ssId = spreadsheetId;
   //var sheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/' + indexId + '/edit');
   var sheet = SpreadsheetApp.openById(ssId);
