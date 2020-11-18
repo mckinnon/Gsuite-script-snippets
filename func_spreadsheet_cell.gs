@@ -14,10 +14,30 @@ function run() {
 }
 
 // Add a custom menu to Google Sheet to run selected script.
-function onOpen() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var searchMenuEntries = [ {name: "Submenu Item", functionName: "Function Name"}];
-  ss.addMenu("Menu Item", searchMenuEntries);
+// note: it appears that passing a value to a function causes the menu creation to fail.
+// i.e. You must call alert1() and alert2() as alert1 and alert2 because alert(1) or alert(2) will trigger on pageload.
+function buildMenu() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Alt Menu')
+      .addItem('First item', 'alert1')
+      .addItem('Second idem', 'alert2')
+      .addItem('Third item', 'alert3')
+      .addSeparator()
+      .addSubMenu(ui.createMenu('Sub-menu')
+          .addItem('Submenu item', 'menuItem2'))
+      .addToUi();
+}
+function alert1() {
+  var msg = "First menu";
+  SpreadsheetApp.getUi().alert(msg);
+}
+function alert2() {
+  var msg = "Second menu";
+  SpreadsheetApp.getUi().alert(msg);
+}
+function alert3() {
+  var msg = "Third menu";
+  SpreadsheetApp.getUi().alert(msg);
 }
 
 // The spreadsheet is opened on the server only, not on the client side.
