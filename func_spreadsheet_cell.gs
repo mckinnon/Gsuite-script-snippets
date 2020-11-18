@@ -16,7 +16,7 @@ function run() {
 // Add a custom menu to Google Sheet to run selected script.
 function onOpen() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var searchMenuEntries = [ {name: "Menu Item", functionName: "Function Name"}];
+  var searchMenuEntries = [ {name: "Submenu Item", functionName: "Function Name"}];
   ss.addMenu("Menu Item", searchMenuEntries);
 }
 
